@@ -1,0 +1,259 @@
+<!--suppress HtmlUnknownAnchorTarget -->
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Path of Links</title>
+    <meta name="description" content="Path of Exile related links around the web">
+    <meta name="author" content="eirc">
+    <link rel="shortcut icon" type="image/png" href="https://web.poecdn.com/image/Art/2DItems/Currency/CurrencyRerollSocketLinks.png"/>
+
+    <style type="text/css">
+        @font-face {
+            font-family: "FontinRegular";
+            src: url("https://web.poecdn.com/font/fontin-regular-webfont.woff") format("woff");
+        }
+
+        html {
+            font-family: "FontinRegular", Verdana, Arial, Helvetica, sans-serif;
+            color: #DFCF99;
+            background-color: #000000;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        a:hover {
+            color: white;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 3em;
+        }
+
+        h1 .subtitle {
+            display: block;
+            font-weight: normal;
+            font-size: 0.4em;
+        }
+
+        #filter {
+            border: solid 1px #141414;
+            background-color: #0c0b0b;
+            color: #DFCF99;
+            font-size: 1.5em;
+            text-align: center;
+            display: block;
+            margin: 10px auto;
+            width: 50%;
+        }
+
+        #container {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #container > * {
+            display: block;
+            background-color: #0c0b0b;
+            border: solid 1px #141414;
+            border-radius: 4px;
+            padding: 0 10px;
+            box-sizing: border-box;
+            flex-grow: 1;
+            margin: 5px 10px;
+        }
+
+        #container > * > a {
+            display: block;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #container > * > .tags {
+            padding: 0;
+        }
+
+        #container > * > .tags > li {
+            display: inline;
+        }
+
+        #footer {
+            color: #4d4a45;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+<h1>
+    Path of Links
+    <span class="subtitle">fusing you to the best poe resources around the web</span>
+</h1>
+
+<input type="search" id="filter" placeholder="Search..."/>
+
+<div id="container"></div>
+
+<p id="footer">
+    Contact me on Discord (@eirc#7251) for adding more links - or send a pull request or issue on <a href="https://github.com/eirc/poe-linker">github</a>.
+</p>
+
+<script type="application/javascript">
+    const data = [
+        // Builds
+        ["Path of Building", "https://github.com/Openarl/PathOfBuilding", "Theory crafting and build damage calculation", ["build", "app"]],
+        ["PoE Planner", "https://poeplanner.com/", "Plan your skill tree online", ["build"]],
+        ["Poe Ninja Builds", "https://poe.ninja/challenge/builds", "Search and filter through players' builds", ["build"]],
+        ["Poe Builds", "https://www.poebuilds.cc/", "Easy to navigate list of Path of Exile builds", ["build"]],
+        ["PoE Build Browser", "http://timtips.com/buildbrowser/", "Another Easy to navigate list of Path of Exile builds", ["build"]],
+        ["Mikelat's Aura Calculator", "https://poe.mikelat.com/", "Online Aura reservation planner", ["aura", "build"]],
+
+        // Items
+        ["PoEAffix", "http://poeaffix.net/", "Path of Exile item affixes", ["info", "web"]],
+        ["PoEDB: Exile Chronicles", "http://poedb.tw/us/", "Data-mined info about items/gems/skills etc.", ["info"]],
+        ["Path of Exile Item Generator", "https://xteare.itch.io/path-of-exile-item-generator", "Item generator", ["web"]],
+        ["PoE Chromatic Calculator", "http://shouldichromeit.herokuapp.com/", "Calculate chances to roll desired colors on sockets with chromatics or recipes", ["chromatic", "vorici"]],
+        ["Vorici Chromatic Calculator", "https://siveran.github.io/calc.html", "Calculate chances to roll desired colors on sockets with chromatics or recipes", ["chromatic", "vorici"]],
+
+        // Filter
+        ["FilterBlade", "https://www.filterblade.xyz/", "Customize NeverSink filter to your own liking", ["filter", "web"]],
+        ["Filtration", "https://github.com/ben-wallis/Filtration", "Create your own Item Filter the easy way using intuitive GUI", ["filter", "app"]],
+        ["FilterBlast", "https://filterblast.xyz/", "Customize many popular filters to your own liking", ["filter", "web"]],
+        ["FilterNova", "https://filterblast.xyz/filternova.html", "Item Filter Auto-Updater / Update Notifier", ["filter", "app"]],
+        ["Filter Bro", "https://github.com/Skyline969/FilterBro", "Update many popular ItemFilters to their newer versions", ["filter", "app"]],
+        ["How to install and use PoE item filters", "https://filterblast.xyz/how-to-install-and-use-poe-item-filter.html", "How to install and use PoE item filters", ["tutorial", "filter", "web"]],
+
+        // Trade
+        ["Official PoE Trading Site", "https://www.pathofexile.com/trade", "Official trade site made by GGG", ["trade", "web"]],
+        ["PoE Trade", "http://poe.trade/", "Most popular Path of Exile shop indexer", ["trade", "web"]],
+        ["PoE App", "https://poeapp.com/", "Yet another trading site with some new options", ["trade", "web"]],
+        ["Poe Ninja", "https://poe.ninja/", "Currency/Item prices and past graph info", ["trade"]],
+        ["PoE Antiquary", "https://poe-antiquary.xyz/", "Check archival prices of items from the past leagues", ["trade"]],
+        ["PoE Trade Macro", "https://github.com/PoE-TradeMacro/POE-TradeMacro", "Check item prices in game", ["trade", "macro", "ahk"]],
+        ["Mercury Trade", "https://github.com/Exslims/MercuryTrade", "Easy trading, preset replies and popup of item offers", ["trade", "overlay"]],
+        ["PoE Trades Companion", "https://github.com/lemasato/POE-Trades-Companion", "Easy trading, preset replies and popup of item offers", ["trade", "overlay"]],
+        ["XenonTrade", "https://github.com/klayveR/xenontrade", "Price checking/trading overlay", ["trade", "overlay"]],
+        ["Trader for PoE", "https://github.com/labo89/TraderForPoe", "Parses all incoming and outgoing trade whispers and shows a notification with useful buttons.", ["trade", "overlay"]],
+        ["Procurement", "https://github.com/Stickymaddness/Procurement", "Path Of Exile Character & Stash Management Tool", ["stash", "trade"]],
+        ["Acquisition", "https://github.com/xyzz/acquisition/", "Trade items without premium tabs, find items in your stash", ["trade", "app", "stash"]],
+
+        // Lab
+        ["POELAB", "https://www.poelab.com/", "Navigation assistance for the Lord's Labyrinth", ["lab", "web"]],
+        ["POELAB Lab Compass", "https://www.poelab.com/lab-compass/", "3rd party overlay tool designed for farmers", ["lab"]],
+        ["POELAB Trial Tracker", "https://www.poelab.com/trial-tracker/", "Helps keep track of trials", ["lab", "web"]],
+
+        // Tracking
+        ["Currency Cop", "https://github.com/currency-cop/currency-cop", "Calculates value of your tabs in Chaos Orbs", ["app", "tracking", "stash"]],
+        ["Exilence", "https://github.com/viktorgullmark/exilence", "Track net worth, maps, gear and more for you and your party", ["app", "tracking", "stash"]],
+        ["Exile Diary", "https://github.com/briansd9/exile-diary", "Track drops, Exp and profit in your maps and more!", ["app", "tracking", "stash"]],
+        ["Atlas Progression Helper", "https://docs.google.com/spreadsheets/d/1ch-zbMUXIjgPEXiC--sdA7crqTaIURPOJyK9AKP9nhE/edit#gid=0", "Check what maps you've completed and easily create WTB whispers for the missing ones", ["info", "trade"]],
+        ["PoE Checklist", "https://poechecklist.com/", "Checklist of all the maps, even these that are not on the Atlas", ["info"]],
+
+        // Leveling
+        ["Poe-Roadmap", "http://poe-roadmap.com/", "Use Path of Building code to create leveling road-map", ["web", "leveling"]],
+        ["PoE Racing", "https://poe-racing.com/", "Racing ladder companion and overlay", ["racing", "ladder", "web", "overlay"]],
+        ["PoE Level Buddy", "https://github.com/Pastillage/PoE_Level_Buddy", "Displays useful info while leveling", ["leveling", "app"]],
+        ["Poe leveling Overlay", "https://github.com/Biggoron144/PoE-Leveling-Overlay", "Shows possible layouts of an area to make leveling faster", ["leveling", "overlay"]],
+        ["PoE Direction Helper", "https://github.com/flacostec/PoEDirectionHelper", "Leveling overlay with zone layouts", ["leveling", "overlay"]],
+        ["ExileNinja", "https://exile.ninja/", "A simple Path of Exile gem planner for easy leveling", ["leveling"]],
+        ["Cheat sheets based on Engineering Eternity", "https://docs.google.com/document/d/1sExA-AnTbroJ-HN2neZiij5G4X9u2ENlC7m_zf1tqP8", "Zone layout cheat sheet", ["document", "leveling"]],
+
+        // Other
+        ["The Official Community-Maintained Path of Exile Wiki", "https://pathofexile.gamepedia.com/", "Huge information database", ["info", "web"]],
+        ["LutBot", "http://lutbot.com/#/", "PoE AutoHotkey Macro with many options", ["macro", "ahk"]],
+        ["PoEURL", "http://poeurl.com/", "URL shortener for PoE related websites", ["web"]],
+        ["PoE API information forum thread", "https://www.pathofexile.com/forum/view-thread/1212138", "Interesting thread with info regarding the PoE API", ["web", "info", "forum"]],
+        ["GitHub search for path of exile related tools", "https://github.com/topics/path-of-exile?o=desc&s=stars", "Github search for path of exile", ["web", "info"]],
+        ["Zana: A Path of Exile bot for discord", "https://github.com/xKynn/zana", "Link items in chat & post detailed previews of path of building pastebin links.", ["bot", "discord"]],
+        ["PoE Addon Launcher", "https://github.com/POE-Addon-Launcher/PoE-Addon-Launcher", "Launcher for multiple apps along with PoE", ["app"]],
+        ["PoE Controller", "https://www.pathofexile.com/forum/view-thread/1594688", "Play Path of Exile using a controller", ["app"]],
+        ["YoloMouse", "https://pandateemo.github.io/YoloMouse/", "Change your cursor appearance to make it more visible", ["app"]],
+        ["TLDR Exile forum", "https://tldrexile.com/pathofexile.com/forum/", "PoE forum in more responsive version", ["forum"]],
+        ["Recipe Locations", "https://www.reddit.com/r/pathofexile/comments/a4njpc", "Locations of crafting recipes", ["info"]],
+        ["Betrayal Flavour Texts", "https://docs.google.com/spreadsheets/d/1DbKARVHsqFdnR-QK-VQ6ggOY2kHiGuzuBO2AGLeay_0", "Betrayal syndicate master flavour text & effects", ["info", "betrayal"]],
+
+        // PoeCraft
+        ["PoeCraft: Atlas", "https://poecraft.com/atlas", "Atlas information & planner", ["info", "web"]],
+        ["PoeCraft: Gem Planner", "https://poecraft.com/gemplanner", "Skill Gem information & planner", ["info", "web", "leveling"]],
+        ["PoeCraft: Item Mod Tool", "https://poecraft.com/itemmods", "Item generator and affix mod information", ["info", "web"]],
+        ["PoeCraft: Jewel Affix Tool", "https://poecraft.com/jewels", "Jewel generator & affix mod information", ["info", "web"]],
+        ["PoeCraft: Path of Exile Item Mods", "https://poecraft.com/basicmods", "Lookup tool for all possible mods on items", ["info", "web"]],
+        ["PoeCraft: Essence", "https://poecraft.com/essence", "Essence upgrade paths & mods", ["info", "web", "essence"]],
+        ["PoeCraft: Bestiary", "https://poecraft.com/bestiary", "Bestiary Crafting Recipes", ["info", "web", "bestiary"]],
+        ["PoeCraft: Bestiary Monster Checklist", "https://poecraft.com/bestiary/checklist", "Checklist for capturing monsters", ["info", "web", "bestiary"]],
+        ["PoeCraft: Bestiary Rare Crafting Chart", "https://poecraft.com/bestiary/chart", "Bestiary crafting affix information", ["info", "web", "bestiary"]],
+
+        // Links
+        ["POELAB Useful Links", "https://www.poelab.com/useful-links/", "More useful links tracked by the POELAB team", ["web", "info"]],
+        ["Grinding.Zone", "https://grinding.zone/", "Hub with most of these links", ["info"]],
+        ["Useful links and tools", "https://www.reddit.com/r/pathofexile/comments/a2ug53/useful_links_and_tools/", "Reddit post gathering links such as here", ["info", "reddit"]],
+        ["List of Path of Exile related websites", "https://pathofexile.gamepedia.com/List_of_Path_of_Exile_related_websites", "More useful links tracked by the The Official Community-Maintained Path of Exile Wiki", ["web", "info"]],
+        ["List of tools for Path of Exile: Betrayal edition", "https://www.reddit.com/r/pathofexile/comments/a3n2tp/list_of_tools_for_path_of_exile_betrayal_edition", "Reddit thread compiling a list of more useful tools for Path of Exile", ["reddit", "web", "info"]],
+    ];
+
+    const container = document.querySelector("#container");
+
+    data.forEach(function (item) {
+        container.insertAdjacentHTML("beforeend", `
+            <div>
+                <h2>
+                    <a target="_blank" href="${item[1]}">
+                        ${item[0]}
+                    </a>
+                </h2>
+                <div class="description">
+                    ${item[2]}
+                </div>
+                <ul class="tags">
+
+                  ${item[3].map((tag) => `
+                    <li><a href="#${tag}">#${tag}</a></li>
+                  `).join("")}
+                </ul>
+            </div>
+        `);
+    });
+
+    const filter = document.getElementById("filter"),
+        items = document.querySelectorAll("#container > *");
+
+    const applyFilter = function () {
+        const terms = filter.value.toLowerCase().trim().split(/\s+/);
+        Array.prototype.forEach.call(items, function (item) {
+            if (terms.every(function (term) {
+                return item.textContent.toLowerCase().includes(term) || item.querySelector("a")["href"].toLowerCase().includes(term);
+            })) {
+                item.style.display = null;
+            } else {
+                item.style.display = "none";
+            }
+        });
+    };
+    filter.addEventListener("keydown", applyFilter);
+    filter.addEventListener("keyup", applyFilter);
+    filter.addEventListener("keypress", applyFilter);
+    filter.addEventListener("change", applyFilter);
+
+    const filterFromHash = function () {
+        filter.value = window.location.hash.substring(1);
+        filter.dispatchEvent(new Event("change"));
+    };
+    window.addEventListener("load", filterFromHash);
+    window.addEventListener("popstate", filterFromHash);
+
+    document.addEventListener("keyup", function (event) {
+        const targetTag = (event.target || event.srcElement).nodeName.toLowerCase();
+        if (!["input", "select", "textarea"].includes(targetTag) && event.key === "/") {
+            filter.focus();
+            filter.select();
+        }
+    });
+</script>
+</body>
+</html>
